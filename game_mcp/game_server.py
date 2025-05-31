@@ -92,6 +92,13 @@ async def get_manual() -> str:
     return bomb.modules[bomb.current_module].instruction()
 
 
+@mcp.tool()
+async def reset(module: str):
+    global bomb
+    bomb = Bomb(module)
+    return 'Game resetted'
+
+
 def create_starlette_app(mcp_server: Server, *, debug: bool = False) -> Starlette:
     """Create a Starlette application that can server the provied mcp server with SSE."""
     sse = SseServerTransport("/session_id/")

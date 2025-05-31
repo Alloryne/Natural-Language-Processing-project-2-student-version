@@ -6,8 +6,20 @@ from game.modules.module import ActionResult
 
 
 class Bomb:
-    def __init__(self):
-        self.modules = [RegularWiresModule(), ButtonModule(), SimonSaysModule(), MemoryModule()]
+    def __init__(self, module=None):
+        if module is not None:
+            if module == 'wire':
+                self.modules = [RegularWiresModule()]
+            elif module == 'button':
+                self.modules = [ButtonModule()]
+            elif module == 'simon':
+                self.modules = [SimonSaysModule()]
+            elif module == 'memory':
+                self.modules = [MemoryModule()]
+            else:
+                self.modules = [RegularWiresModule(), ButtonModule(), SimonSaysModule(), MemoryModule()]
+        else:
+            self.modules = [RegularWiresModule(), ButtonModule(), SimonSaysModule(), MemoryModule()]
         self.current_module = 0
         self.exploded = False
         self.disarmed = False

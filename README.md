@@ -51,7 +51,7 @@ cd llm-bomb-defusal
 
 2. Create a virtual environment and install requirements:
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 Start the game server:
 
 ```bash
-python -m game_mcp.game_server --host 0.0.0.0 --port 8080
+python3 -m game_mcp.game_server --host 0.0.0.0 --port 8080
 ```
 
 #### 🛠️ MCP Server Tools
@@ -111,11 +111,11 @@ These tools are exposed via SSE (Server-Sent Events) and designed to support rea
 You can play the game manually with another person:
 
 ```bash
-python -m game.main wires    # Regular Wires module
-python -m game.main button   # Button module
-python -m game.main simon    # Simon Says module
-python -m game.main memory   # Memory module
-python -m game.main random   # Random module
+python3 -m game.main wires    # Regular Wires module
+python3 -m game.main button   # Button module
+python3 -m game.main simon    # Simon Says module
+python3 -m game.main memory   # Memory module
+python3 -m game.main random   # Random module
 ```
 
 In manual mode, one person acts as the Defuser (typing commands and seeing the bomb state) and another person as the Expert (reading the manual).
@@ -125,7 +125,7 @@ In manual mode, one person acts as the Defuser (typing commands and seeing the b
 Run two LLM agents playing together:
 
 ```bash
-python -m agents.two_agents
+python3 -m agents.two_agents
 ```
 
 This will:

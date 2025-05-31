@@ -77,7 +77,7 @@ class SmollLLM(HFModel):
         """
         # 1) Build the chat prompt for SmolLM. The custom method
         #    'apply_chat_template' helps format messages into a single prompt.
-        input_text: str = self.tokenizer.apply_chat_template(messages, tokenize=False)
+        input_text: str = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 
         # 2) Tokenize the prompt
         inputs = self.tokenizer.encode(input_text, return_tensors="pt").to(self.device)
@@ -94,8 +94,11 @@ class SmollLLM(HFModel):
                 **kwargs
             )
 
+        input_length = inputs.shape[-1]
+        generated_tokens = outputs[0][input_length:]
+
         # 4) Decode the tokens to a string
-        generated_text: str = self.tokenizer.decode(outputs[0])
+        generated_text: str = self.tokenizer.decode(generated_tokens)
 
         return generated_text
 
